@@ -9,26 +9,28 @@
             <h3 class="text-primary">Category List</h3>
         </div>
         <div class="col-6 text-end">
-            <a class="btn btn-outline-primary "><i class="bi bi-plus-circle-fill"></i> Add Category</a>
+            <a asp-controller="Category" asp-action="Add" class="btn btn-outline-primary "><i class="bi bi-plus-circle-fill"></i> Add Category</a>
         </div>
     </div>
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th scope="col">Id</th>
+                    <th scope="col" class="text-center">Id</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Display Order</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach(var item in Model){
-                <tr class="table-active">
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
+                <tr class="table-active align-center">
+                    <td class="pt-3 text-center">@item.Id</td>
+                    <td class="pt-3">@item.Name</td>
+                    <td class="pt-3">@item.DisplayOrder</td>
                     <td class="text-end">
                         <div class="btn-group" role="group">
-                            <a class="btn text-primary"><i class="bi bi-pencil-square"></i> Edit</a>
-                            <a class="btn text-danger"><i class="bi bi-trash-fill"></i> Delete</a>
+                            <a class="btn text-primary" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+                            <a class="btn text-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i> Delete</a>
                         </div>
                     </td>
                 </tr>
