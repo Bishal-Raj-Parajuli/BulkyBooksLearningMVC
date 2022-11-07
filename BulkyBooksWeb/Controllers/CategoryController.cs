@@ -1,4 +1,5 @@
 ﻿using BulkyBooksWeb.Data;
+using BulkyBooksWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBooksWeb.Controllers
@@ -7,11 +8,17 @@ namespace BulkyBooksWeb.Controllers
     {
         private readonly ApplicationDbContext _db;
 
+        public CategoryController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
+
         //GET: HOME
         public IActionResult Index()
         {
-            
-            return View();
+            IEnumerable<Category> obj = _db.Categories;
+            return View(obj);
         }
 
         //GET: ADD
