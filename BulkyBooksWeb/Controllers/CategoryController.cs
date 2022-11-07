@@ -91,11 +91,12 @@ namespace BulkyBooksWeb.Controllers
         public IActionResult DeletePOST(int? id)
         {
             var obj = _db.Categories.Find(id);
-            if (ModelState.IsValid)
+            if(obj == null)
             {
-                _db.Categories.Remove(obj);
-                _db.SaveChanges();
+                return NotFound();
             }
+             _db.Categories.Remove(obj);
+             _db.SaveChanges();
             return RedirectToAction("Index");
         }
     }
